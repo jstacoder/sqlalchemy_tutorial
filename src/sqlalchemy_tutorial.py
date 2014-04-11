@@ -4,9 +4,9 @@ import sqlalchemy as sqldb
 db = sqldb.create_engine('sqlite:///tutorial.db')
 db.echo = False
 
-metadata = sqldb.BoundMetaData(db)
+#metadata = sqldb.BoundMetaData(db)
 
-users = sqldb.Table('users', metadata,
+users = sqldb.Table('users', db,
     sqldb.Column('user_id',sqldb.Integer,primary_key=True),
     sqldb.Column('name', sqldb.String(55)),
     sqldb.Column('age',sqldb.Integer),
@@ -34,4 +34,3 @@ print 'Password:', row[users.c.password]
 for row in rs:
     print row.name, 'is', row.age, 'years old'
 
-    
