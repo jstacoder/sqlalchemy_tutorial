@@ -1,12 +1,13 @@
 # sqlalchemy tutorial
 import sqlalchemy as sqldb
+from sqlalchemy import BoundMetaData
 
 db = sqldb.create_engine('sqlite:///tutorial.db')
 db.echo = False
 
-#metadata = sqldb.BoundMetaData(db)
+metadata = BoundMetaData(db)
 
-users = sqldb.Table('users', db,
+users = sqldb.Table('users', metadata,
     sqldb.Column('user_id',sqldb.Integer,primary_key=True),
     sqldb.Column('name', sqldb.String(55)),
     sqldb.Column('age',sqldb.Integer),
